@@ -14,3 +14,15 @@ services:
     working_dir: /go/src/go-api-template
     command: go run main.go
 
+  db:
+    image: mysql:5.7
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - mysql-data:/var/lib/mysql:delegated
+
+volumes:
+  mysql-data:
+    driver: local
